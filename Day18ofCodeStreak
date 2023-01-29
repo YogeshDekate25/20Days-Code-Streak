@@ -1,0 +1,14 @@
+Z = readline().split(' ').map(Number);
+n = Z[0], m = Z[1];
+A = readline().split(' ').map(Number);
+r=A.reduce((a,c)=>{
+    if(c>= a.now){
+        a.sum += c - a.now;
+    }
+    else{
+        a.sum += n- a.now + c;
+    }
+    a.now = c;
+    return a;
+}, {now : 1 ,sum : 0});
+print(r.sum);
