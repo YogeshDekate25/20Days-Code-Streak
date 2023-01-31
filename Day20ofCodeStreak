@@ -1,0 +1,41 @@
+var _ite = readline();
+while(_ite--){
+    var nxm = readline().split(" ").map(Number);
+    var minBound = Math.pow(10,9)+2;
+    var maxBound = -1;
+    var keyindex=nxm[1]-1;
+    var condition = true;
+    for(var i=0;i<nxm[2];i++){
+        var rindex=readline().split(" ").map(Number);
+        var inputLowerBound=rindex[0]-1;
+        var inputUpperBound=rindex[1]-1;
+        if(inputLowerBound<=keyindex && keyindex<=inputUpperBound && condition){
+            minBound=inputLowerBound;
+            maxBound=inputUpperBound;
+            condition=false;
+            
+        }
+        
+        if(inputLowerBound<=minBound && inputUpperBound>=minBound){
+            minBound=inputLowerBound;
+            if(inputUpperBound>maxBound){
+                maxBound=inputUpperBound;
+            }
+        }
+        
+        if(inputUpperBound>=maxBound && inputLowerBound<=maxBound){
+            maxBound=inputUpperBound;
+            if(inputLowerBound<minBound){
+                minBound=inputLowerBound;
+            }
+        }
+        
+        
+    }
+    
+    if(minBound==Math.pow(10,9)+2 || maxBound==-1){
+        print(1);
+        continue;
+    }
+    print(maxBound-minBound+1);
+}
